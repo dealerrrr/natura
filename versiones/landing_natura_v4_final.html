@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiero ser consultora · Natura con Gabi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rojo:        #C8102E;
+  --rojo-hover:  #A50D26;
+  --rojo-dark:   #8B0A1F;
+  --rojo-bg:     #FFF0F2;
+  --amber:       #F0A600;
+  --amber-dark:  #C88900;
+  --gris1:       #F7F7F7;
+  --gris2:       #EEEEEE;
+  --negro:       #1A1A1A;
+  --texto:       #3D3D3D;
+  --gris-med:    #767676;
+  --borde:       #E0E0E0;
+  --blanco:      #FFFFFF;
+  --wa-bg:       #0A7A3E;
+  --wa-hover:    #065C2E;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Inter",sans-serif;background:var(--blanco);color:var(--negro);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ── UTILIDADES ── */
+.container{max-width:1060px;margin:0 auto;padding:0 32px;}
+.etiqueta{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--rojo);margin-bottom:12px;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.in{opacity:1;transform:none;}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}
+
+/* ── BOTONES ── */
+.btn-rojo{display:inline-flex;align-items:center;gap:8px;background:var(--rojo);color:#fff;font-family:"Inter",sans-serif;font-weight:600;font-size:.88rem;letter-spacing:.02em;padding:13px 28px;border-radius:50px;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s;}
+.btn-rojo:hover{background:var(--rojo-hover);transform:translateY(-1px);}
+.btn-rojo-lg{padding:16px 40px;font-size:1rem;}
+.btn-wa{display:inline-flex;align-items:center;gap:10px;background:var(--wa-bg);color:#fff;font-family:"Inter",sans-serif;font-weight:700;font-size:.9rem;padding:14px 30px;border-radius:50px;text-decoration:none;border:2px solid var(--wa-bg);box-shadow:0 3px 12px rgba(10,122,62,.4);transition:background .2s,transform .15s;}
+.btn-wa:hover{background:var(--wa-hover);border-color:var(--wa-hover);transform:translateY(-1px);}
+.btn-wa svg,.btn-rojo svg{width:18px;height:18px;fill:currentColor;flex-shrink:0;}
+.btn-wa-lg{padding:17px 42px;font-size:1rem;font-weight:700;}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--blanco);border-bottom:1px solid var(--borde);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{font-family:"Inter",sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.06em;color:var(--negro);text-decoration:none;display:flex;align-items:center;gap:6px;}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--rojo);display:inline-block;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--texto);text-decoration:none;letter-spacing:.02em;transition:color .2s;}
+.nav-links a:hover{color:var(--rojo);}
+@media(max-width:700px){.nav-links{display:none;}}
+
+/* ── HERO ── */
+.hero{background:var(--blanco);display:grid;grid-template-columns:1fr 400px;min-height:88vh;overflow:hidden;}
+@media(max-width:800px){.hero{grid-template-columns:1fr;min-height:auto;}}
+.hero-img{position:relative;overflow:hidden;background:#f0ebe5;}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.hero-dots{position:absolute;bottom:0;right:0;width:200px;height:200px;background:radial-gradient(circle,var(--rojo) 2px,transparent 2px) 0 0/18px 18px;opacity:.25;}
+.hero-panel{background:var(--rojo);padding:60px 44px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.hero-panel::before{content:"";position:absolute;bottom:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.06);}
+.hero-chip{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:6px 16px;font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:22px;width:fit-content;}
+.hero-panel h1{font-family:"Lora",serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:600;color:#fff;line-height:1.12;margin-bottom:16px;}
+.hero-panel h1 em{font-style:italic;color:rgba(255,255,255,.8);}
+.hero-panel p{font-size:.92rem;color:rgba(255,255,255,.72);font-weight:300;line-height:1.72;margin-bottom:32px;max-width:320px;}
+.hero-note{display:block;margin-top:14px;font-size:.7rem;color:rgba(255,255,255,.45);letter-spacing:.04em;}
+
+/* ── GANANCIA BAND ── */
+.gain-band{background:var(--rojo-dark);padding:20px 32px;}
+.gain-inner{display:flex;align-items:center;gap:14px;max-width:1060px;margin:0 auto;}
+.gain-ico{width:32px;height:32px;flex-shrink:0;opacity:.85;}
+.gain-txt{font-size:.88rem;color:#fff;font-weight:400;}
+.gain-txt strong{font-weight:700;font-size:1rem;}
+
+/* ── STATS ── */
+.stats-sec{background:var(--rojo);padding:48px 32px;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;max-width:900px;margin:0 auto;text-align:center;}
+.stat-n{font-family:"Lora",serif;font-size:2.2rem;font-weight:600;color:#fff;line-height:1;margin-bottom:6px;}
+.stat-l{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);}
+
+/* ── ESPEJO ── */
+.espejo{background:var(--blanco);padding:88px 32px;}
+.espejo-inner{max-width:920px;margin:0 auto;}
+.espejo h2{font-family:"Lora",serif;font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:600;color:var(--negro);line-height:1.15;max-width:580px;margin-bottom:40px;}
+.espejo h2 em{font-style:italic;color:var(--rojo);}
+.dolor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:40px;}
+.dolor-card{background:var(--gris1);border:1px solid var(--borde);border-radius:8px;padding:24px 20px;transition:border-color .2s;}
+.dolor-card:hover{border-color:rgba(200,16,46,.35);}
+.d-ico{font-size:1.4rem;margin-bottom:10px;display:block;}
+.dolor-card p{font-size:.85rem;line-height:1.7;color:var(--texto);font-weight:300;}
+.dolor-card strong{color:var(--negro);font-weight:600;}
+.espejo-quote{font-family:"Lora",serif;font-size:clamp(1rem,2.2vw,1.35rem);font-style:italic;color:var(--rojo-hover);border-left:3px solid var(--rojo);padding-left:20px;line-height:1.6;max-width:540px;}
+
+/* ── BENEFICIOS ── */
+.bene-sec{background:var(--gris1);padding:88px 32px;}
+.bene-header{text-align:center;margin-bottom:52px;}
+.bene-header h2{font-family:"Lora",serif;font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:600;color:var(--negro);line-height:1.15;margin-bottom:10px;}
+.bene-header h2 em{color:var(--rojo);font-style:italic;}
+.bene-header p{font-size:.93rem;color:var(--gris-med);font-weight:300;max-width:440px;margin:0 auto;}
+.bene-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:16px;}
+.bene-card{background:var(--blanco);border-radius:8px;padding:28px 24px;border:1px solid var(--borde);transition:border-color .2s,box-shadow .2s;}
+.bene-card:hover{border-color:rgba(200,16,46,.3);box-shadow:0 4px 16px rgba(200,16,46,.07);}
+/* Ícono estilo Natura: cuadrado rojo con ícono blanco */
+.natura-ico{width:44px;height:44px;border-radius:8px;background:var(--rojo);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.natura-ico svg{width:22px;height:22px;fill:#fff;}
+.bene-card h3{font-size:.95rem;font-weight:700;color:var(--negro);margin-bottom:8px;}
+.bene-card p{font-size:.82rem;line-height:1.72;color:var(--gris-med);font-weight:300;}
+
+/* ── PASOS ── */
+.pasos-sec{background:var(--blanco);padding:88px 32px;}
+.pasos-header{text-align:center;margin-bottom:52px;}
+.pasos-header h2{font-family:"Lora",serif;font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:600;color:var(--negro);margin-bottom:10px;}
+.pasos-header p{font-size:.9rem;color:var(--gris-med);font-weight:300;max-width:500px;margin:0 auto;}
+.pasos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;max-width:860px;margin:0 auto 44px;}
+.paso-card{text-align:center;padding:28px 20px;}
+.paso-num{width:52px;height:52px;border-radius:50%;background:var(--rojo-bg);border:2px solid var(--rojo);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:"Lora",serif;font-size:1.2rem;font-weight:600;color:var(--rojo);}
+.paso-card h3{font-size:.95rem;font-weight:700;color:var(--negro);margin-bottom:8px;}
+.paso-card p{font-size:.82rem;line-height:1.7;color:var(--gris-med);font-weight:300;}
+
+/* ── GABI ── */
+.gabi-sec{background:var(--gris1);padding:88px 32px;}
+.gabi-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:center;}
+@media(max-width:700px){.gabi-inner{grid-template-columns:1fr;gap:36px;}}
+.gabi-foto-wrap{position:relative;}
+.gabi-frame{width:100%;aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:#f0ebe5;}
+.gabi-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.gabi-badge{position:absolute;bottom:-16px;right:-16px;background:var(--rojo);color:#fff;border-radius:8px;padding:14px 18px;text-align:center;box-shadow:0 4px 16px rgba(200,16,46,.4);}
+.gabi-badge-n{font-family:"Lora",serif;font-size:2rem;font-weight:600;line-height:1;display:block;}
+.gabi-badge-l{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;}
+.gabi-txt h2{font-family:"Lora",serif;font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:600;color:var(--negro);line-height:1.15;margin-bottom:16px;}
+.gabi-txt h2 em{color:var(--rojo);font-style:italic;}
+.gabi-txt p{font-size:.88rem;line-height:1.82;color:var(--texto);font-weight:300;margin-bottom:12px;}
+.gabi-txt p strong{color:var(--negro);font-weight:600;}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px;}
+.pill{background:var(--blanco);border:1px solid var(--borde);border-radius:50px;padding:5px 14px;font-size:.7rem;font-weight:600;color:var(--rojo);letter-spacing:.02em;}
+
+/* ── TESTIMONIOS ── */
+.testi-sec{background:var(--blanco);padding:88px 32px;}
+.testi-header{text-align:center;margin-bottom:48px;}
+.testi-header h2{font-family:"Lora",serif;font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:600;color:var(--negro);margin-bottom:8px;}
+.testi-header p{font-size:.9rem;color:var(--gris-med);font-weight:300;}
+.testi-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.testi-card{background:var(--gris1);border:1px solid var(--borde);border-radius:8px;padding:24px;}
+.testi-photo{width:100%;aspect-ratio:4/3;border-radius:6px;margin-bottom:16px;overflow:hidden;background:var(--gris2);display:flex;align-items:center;justify-content:center;}
+.ph-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gris-med);}
+.ph-wrap svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:1.5;opacity:.5;}
+.ph-wrap span{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.5;}
+.testi-stars{color:var(--rojo);font-size:.75rem;margin-bottom:10px;letter-spacing:2px;}
+.testi-card blockquote{font-family:"Lora",serif;font-style:italic;font-size:.87rem;line-height:1.76;color:var(--texto);margin-bottom:18px;}
+.testi-persona{display:flex;align-items:center;gap:10px;}
+.av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.av-a{background:var(--rojo);}
+.av-b{background:#E07B00;}
+.av-c{background:#5A3A8A;}
+.testi-info strong{display:block;font-size:.8rem;color:var(--negro);font-weight:600;}
+.testi-info span{font-size:.7rem;color:var(--gris-med);}
+
+/* ── NIVELES ── */
+.niveles-sec{background:var(--rojo-dark);padding:72px 32px;}
+.niveles-inner{max-width:1060px;margin:0 auto;}
+.niveles-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:40px;}
+.niveles-top-ico{width:36px;height:36px;flex-shrink:0;}
+.niveles-top h2{font-size:clamp(1.3rem,2.8vw,2rem);font-weight:700;color:#fff;line-height:1.2;}
+.niveles-top h2 strong{font-weight:800;}
+.niveles-top p{font-size:.82rem;color:rgba(255,255,255,.65);font-weight:300;margin-top:4px;line-height:1.6;}
+.niveles-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;}
+.nivel-card{background:var(--blanco);border-radius:8px;padding:20px 14px;text-align:center;}
+.nivel-badge{width:44px;height:44px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.nb-bronze{background:#CD7F32;}.nb-plata{background:#9E9E9E;}.nb-oro{background:#D4AF37;}.nb-zafiro{background:#4A90D9;}.nb-diamante{background:#8B7DB5;}.nb-dazul{background:#2C4B7A;}
+.nivel-card h4{font-size:.82rem;font-weight:700;color:var(--negro);margin-bottom:6px;}
+.nivel-pct{font-size:1.1rem;font-weight:800;color:var(--rojo);display:block;line-height:1;}
+.nivel-sub{font-size:.62rem;color:var(--gris-med);margin-top:3px;}
+
+/* ── OBJECIONES ── */
+.obj-sec{background:var(--negro);padding:88px 32px;position:relative;overflow:hidden;}
+.obj-sec::before{content:"";position:absolute;top:-120px;right:-120px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.12),transparent 65%);}
+.obj-inner{max-width:800px;margin:0 auto;position:relative;z-index:2;}
+.obj-inner .etiqueta{color:rgba(200,16,46,.85);}
+.obj-inner h2{font-family:"Lora",serif;font-size:clamp(1.8rem,3.6vw,2.5rem);color:#fff;font-weight:600;margin-bottom:8px;line-height:1.15;}
+.obj-inner>p{color:rgba(255,255,255,.48);font-size:.9rem;font-weight:300;margin-bottom:40px;}
+.obj-list{display:flex;flex-direction:column;gap:10px;}
+.obj-item{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:0 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:18px 20px;align-items:start;row-gap:6px;}
+@media(max-width:560px){.obj-item{grid-template-columns:auto 1fr;}.obj-sep{display:none;}.obj-r-label{grid-column:1;}.obj-r-txt{grid-column:2;}}
+.obj-m-lbl,.obj-r-lbl{font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding-top:2px;white-space:nowrap;}
+.obj-m-lbl{color:rgba(255,255,255,.25);}
+.obj-r-lbl{color:rgba(200,16,46,.85);}
+.obj-m-txt{font-size:.84rem;color:rgba(255,255,255,.48);line-height:1.58;font-weight:300;font-style:italic;}
+.obj-sep{font-size:.9rem;color:var(--rojo);opacity:.6;padding-top:2px;}
+.obj-r-txt{font-size:.84rem;color:rgba(255,255,255,.88);line-height:1.62;}
+.obj-r-txt strong{color:rgba(200,16,46,.95);}
+
+/* ── FAQ ── */
+.faq-sec{background:var(--gris1);padding:88px 32px;}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-header{text-align:center;margin-bottom:40px;}
+.faq-header h2{font-family:"Lora",serif;font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:600;color:var(--negro);margin-bottom:8px;}
+.faq-header p{font-size:.9rem;color:var(--gris-med);font-weight:300;}
+.faq-list{display:flex;flex-direction:column;gap:6px;}
+.faq-item{background:var(--blanco);border:1px solid var(--borde);border-radius:8px;overflow:hidden;transition:border-color .2s;}
+.faq-item.open{border-color:rgba(200,16,46,.35);}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;text-align:left;font-family:"Inter",sans-serif;font-size:.87rem;font-weight:600;color:var(--negro);line-height:1.42;transition:color .2s;}
+.faq-item.open .faq-q{color:var(--rojo);}
+.faq-chevron{flex-shrink:0;color:var(--rojo);transition:transform .3s;}
+.faq-chevron svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;}
+.faq-item.open .faq-chevron{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .36s ease;}
+.faq-ai{padding:0 20px 18px;font-size:.84rem;line-height:1.8;color:var(--texto);font-weight:300;}
+.faq-ai strong{color:var(--negro);font-weight:600;}
+.faq-item.open .faq-a{max-height:500px;}
+
+/* ── CTA FINAL ── */
+.cta-sec{background:var(--rojo);padding:104px 32px;text-align:center;position:relative;overflow:hidden;}
+.cta-sec::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 30%,rgba(255,255,255,.06),transparent 55%);}
+.cta-inner{position:relative;z-index:2;max-width:580px;margin:0 auto;}
+.cta-tag{display:block;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px;}
+.cta-sec h2{font-family:"Lora",serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:600;color:#fff;line-height:1.1;margin-bottom:14px;}
+.cta-sec h2 em{font-style:italic;color:rgba(255,255,255,.8);}
+.cta-sec p{font-size:.94rem;color:rgba(255,255,255,.6);font-weight:300;line-height:1.72;max-width:440px;margin:0 auto 40px;}
+.cta-micro{display:block;margin-top:14px;font-size:.67rem;color:rgba(255,255,255,.3);letter-spacing:.04em;}
+
+/* ── FOOTER ── */
+footer{background:var(--amber);padding:32px;}
+.footer-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;}
+@media(max-width:600px){.footer-inner{grid-template-columns:1fr;text-align:center;}}
+.footer-brand{font-size:.82rem;color:var(--negro);line-height:1.7;}
+.footer-brand strong{font-weight:700;font-size:.9rem;}
+.footer-copy{font-size:.7rem;color:var(--negro);opacity:.55;text-align:right;}
+@media(max-width:600px){.footer-copy{text-align:center;}}
+
+/* ── STICKY MOBILE ── */
+.sticky{display:none;position:fixed;bottom:0;left:0;right:0;padding:10px 16px 14px;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--borde);z-index:999;}
+@media(max-width:600px){.sticky{display:block;}body{padding-bottom:74px;}}
+.sticky a{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--wa-bg);color:#fff;text-decoration:none;padding:13px;border-radius:50px;font-weight:700;font-size:.88rem;}
+.sticky svg{width:18px;height:18px;fill:#fff;}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.hero-panel>*{opacity:0;animation:fadeIn .6s ease forwards;}
+.hero-chip{animation-delay:.15s;}
+.hero-panel h1{animation-delay:.3s;}
+.hero-panel p{animation-delay:.45s;}
+.hero-panel .btn-wa{animation-delay:.6s;}
+.hero-panel .hero-note{animation-delay:.65s;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <a href="#" class="logo"><span class="logo-dot"></span>natura cosméticos</a>
+  <ul class="nav-links">
+    <li><a href="#beneficios">Cómo vender</a></li>
+    <li><a href="#niveles">Ganancia</a></li>
+    <li><a href="#pasos">Paso a paso</a></li>
+    <li><a href="#faq">Dudas</a></li>
+  </ul>
+  <a class="btn-wa" href="https://wa.me/543364674254?text=Hola%20Gabi%2C%20quiero%20ser%20consultora%2C%20cont%C3%A1ctame%20por%20favor%20%F0%9F%8C%B1" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Escribile a Gabi
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="data:image/jpeg;base64,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" alt="Gabriela González Campos · Gerente de Negocios Natura">
+    <div class="hero-dots"></div>
+  </div>
+  <div class="hero-panel">
+    <span class="hero-chip">Sector 460 Jade · San Nicolás y zona</span>
+    <h1>Decidí cómo invertir tu tiempo y <em>hacé crecer tu ganancia.</em></h1>
+    <p>Ser consultora Natura te da ingresos reales, libertad de horarios y el apoyo de alguien que ya recorrió el camino.</p>
+    <a class="btn-wa btn-wa-lg" href="https://wa.me/543364674254?text=Hola%20Gabi%2C%20quiero%20ser%20consultora%2C%20cont%C3%A1ctame%20por%20favor%20%F0%9F%8C%B1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Registrate gratis con Gabi
+    </a>
+    <span class="hero-note">Sin inversión obligatoria · Sin experiencia previa</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-sec">
+  <div class="stats-grid">
+    <div class="reveal"><div class="stat-n">25–37%</div><div class="stat-l">comisión por venta</div></div>
+    <div class="reveal d1"><div class="stat-n">$0</div><div class="stat-l">inversión obligatoria para empezar</div></div>
+    <div class="reveal d2"><div class="stat-n">30</div><div class="stat-l">años de experiencia de Gabi</div></div>
+    <div class="reveal d3"><div class="stat-n">24/7</div><div class="stat-l">tu tienda online activa</div></div>
+  </div>
+</section>
+
+<!-- ESPEJO -->
+<section class="espejo">
+  <div class="espejo-inner">
+    <span class="etiqueta reveal">¿Te sentís así?</span>
+    <h2 class="reveal">Sabemos exactamente<br>lo que estás <em>viviendo.</em></h2>
+    <div class="dolor-grid">
+      <div class="dolor-card reveal d1"><span class="d-ico">⏰</span><p><strong>El dinero no alcanza</strong> aunque trabajés todo el día. Sentís que dependés de otros y eso pesa.</p></div>
+      <div class="dolor-card reveal d2"><span class="d-ico">👧</span><p><strong>Querés estar para tu familia</strong>, pero un trabajo convencional te consume el tiempo que más necesitás.</p></div>
+      <div class="dolor-card reveal d3"><span class="d-ico">💭</span><p><strong>Sentís que podés más.</strong> Tenés ganas de emprender, pero no sabés por dónde arrancar.</p></div>
+      <div class="dolor-card reveal d4"><span class="d-ico">😟</span><p><strong>Te frenó el miedo.</strong> ¿Y si no funciona? ¿Y si no soy capaz? Esas preguntas te detuvieron hasta ahora.</p></div>
+    </div>
+    <blockquote class="espejo-quote reveal">Si llegaste hasta acá, ya diste el primer paso.<br>Y hay alguien esperando para caminar el resto con vos.</blockquote>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="bene-sec" id="beneficios">
+  <div class="bene-header reveal"><span class="etiqueta">Cómo vender</span><h2>Decidí cómo invertir<br>tu tiempo y <em>crecer.</em></h2><p>Elegí la forma que mejor se adapte a tu rutina o combinalas para potenciar tus ganancias.</p></div>
+  <div class="bene-grid">
+    <div class="bene-card reveal d1">
+      <div class="natura-ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
+      <h3>Más productos, más ganancias</h3>
+      <p>Productos favoritos con la más alta tecnología. Perfectos para vos, tus clientes y el planeta.</p>
+    </div>
+    <div class="bene-card reveal d2">
+      <div class="natura-ico"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>
+      <h3>Una app diseñada para vos</h3>
+      <p>Tu Consultoría en la palma de tu mano: realizá pedidos, seguí tus ventas y mucho más.</p>
+    </div>
+    <div class="bene-card reveal d3">
+      <div class="natura-ico"><svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></div>
+      <h3>Entrenamiento gratuito</h3>
+      <p>Compromiso con tu desarrollo: capacitación exclusiva para fortalecer tus habilidades de venta y liderazgo.</p>
+    </div>
+    <div class="bene-card reveal d1">
+      <div class="natura-ico"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg></div>
+      <h3>Reconocimientos</h3>
+      <p>Reconocemos tu labor por medio del programa Camino de Crecimiento. Cuanto más vendés, más beneficios obtenés.</p>
+    </div>
+    <div class="bene-card reveal d2">
+      <div class="natura-ico"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+      <h3>Comunidad que te sostiene</h3>
+      <p>No estás sola. Te sumás a un equipo de mujeres que se apoya, comparte tips y festeja los logros juntas.</p>
+    </div>
+    <div class="bene-card reveal d3">
+      <div class="natura-ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <h3>Tu tienda online 24/7</h3>
+      <p>Vendé a todo el país desde el celular, incluso mientras dormís. Sin complicaciones con pagos ni envíos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NIVELES -->
+<section class="niveles-sec" id="niveles">
+  <div class="niveles-inner">
+    <div class="niveles-top reveal">
+      <svg class="niveles-top-ico" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <div>
+        <h2>Alcanzá una <strong>Oportunidad de Ganancia de hasta el 37%</strong></h2>
+        <p>Incrementá tu porcentaje con el programa Camino de Crecimiento. Entre más productos vendés, más beneficios obtenés.</p>
+      </div>
+    </div>
+    <div class="niveles-cards">
+      <div class="nivel-card reveal d1"><div class="nivel-badge nb-bronze">🥉</div><h4>Bronce</h4><span class="nivel-pct">25%</span><div class="nivel-sub">Presencial y online</div></div>
+      <div class="nivel-card reveal d2"><div class="nivel-badge nb-plata">🥈</div><h4>Plata</h4><span class="nivel-pct">30%</span><div class="nivel-sub">Presencial y online</div></div>
+      <div class="nivel-card reveal d3"><div class="nivel-badge nb-oro">🥇</div><h4>Oro</h4><span class="nivel-pct">35%</span><div class="nivel-sub">Presencial y online</div></div>
+      <div class="nivel-card reveal d4"><div class="nivel-badge nb-zafiro">💎</div><h4>Zafiro</h4><span class="nivel-pct">37%</span><div class="nivel-sub">Presencial y online</div></div>
+      <div class="nivel-card reveal d1"><div class="nivel-badge nb-diamante">💠</div><h4>Diamante</h4><span class="nivel-pct">35–40%</span><div class="nivel-sub">Según canal</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GABI -->
+<section class="gabi-sec">
+  <div class="gabi-inner">
+    <div class="gabi-foto-wrap reveal">
+      <div class="gabi-frame">
+        <img src="data:image/jpeg;base64,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" alt="Gabi · Gerente de Negocios Natura Sector 460 Jade">
+      </div>
+      <div class="gabi-badge"><span class="gabi-badge-n">30</span><span class="gabi-badge-l">años de experiencia</span></div>
+    </div>
+    <div class="gabi-txt">
+      <span class="etiqueta reveal">Tu mentora · Sector 460 Jade</span>
+      <h2 class="reveal">Gabi no solo te guía.<br><em>Camina con vos.</em></h2>
+      <p class="reveal">Soy <strong>Gabriela González Campos</strong>, Gerente de Negocios de Natura en el Sector 460 Jade con <strong>30 años de experiencia</strong> en venta directa y construcción de equipos. Tengo formación en <strong>MBA</strong> y sé exactamente cuáles son los miedos que frenan a una mujer antes de dar el primer paso.</p>
+      <p class="reveal">Lo que me diferencia es simple: <strong>no te dejo sola.</strong> Te acompaño desde el día uno con mentoría real, cercana y personalizada. En San Nicolás, Ramallo, Baradero, San Pedro, Arrecifes y Pérez Millán ya hay mujeres que lo lograron con mi guía.</p>
+      <div class="pills reveal">
+        <span class="pill">✓ MBA</span><span class="pill">✓ 30 años en ventas</span><span class="pill">✓ Mentoría personalizada</span><span class="pill">✓ Sector 460 Jade</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testi-sec">
+  <div class="testi-header reveal"><span class="etiqueta">Historias reales</span><h2>Mujeres de tu zona<br>que se animaron.</h2><p>Cada una empezó exactamente desde donde estás vos ahora.</p></div>
+  <div class="testi-grid">
+    <div class="testi-card reveal d1">
+      <div class="testi-photo"><div class="ph-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>Foto de María</span></div></div>
+      <div class="testi-stars">★★★★★</div>
+      <blockquote>"Nunca había vendido nada. Con la guía de Gabi aprendí todo desde cero. Hoy pago sola la cuota del colegio de mis hijos."</blockquote>
+      <div class="testi-persona"><div class="av av-a">M</div><div class="testi-info"><strong>María L.</strong><span>San Nicolás · mamá de 2</span></div></div>
+    </div>
+    <div class="testi-card reveal d2">
+      <div class="testi-photo"><div class="ph-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>Foto de Ana</span></div></div>
+      <div class="testi-stars">★★★★★</div>
+      <blockquote>"Tenía miedo de perder plata. No había inversión obligatoria. En el segundo ciclo ya estaba ganando bien, sin dejar mi otro trabajo."</blockquote>
+      <div class="testi-persona"><div class="av av-b">A</div><div class="testi-info"><strong>Ana G.</strong><span>Ramallo · empleada + consultora</span></div></div>
+    </div>
+    <div class="testi-card reveal d3">
+      <div class="testi-photo"><div class="ph-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>Foto de Carolina</span></div></div>
+      <div class="testi-stars">★★★★★</div>
+      <blockquote>"Llegué sola y hoy soy líder de equipo. Lo mejor fue encontrar mujeres que se apoyan de verdad. Y encima gano mi propio dinero."</blockquote>
+      <div class="testi-persona"><div class="av av-c">C</div><div class="testi-info"><strong>Carolina V.</strong><span>Baradero · líder de equipo</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PASOS -->
+<section class="pasos-sec" id="pasos">
+  <div class="pasos-header reveal"><span class="etiqueta">Paso a paso</span><h2>Tu consultoría en 3 pasos.</h2><p>Rápido, sencillo y sin trámites. En minutos podés ser parte.</p></div>
+  <div class="pasos-grid">
+    <div class="paso-card reveal d1"><div class="paso-num">1</div><h3>Escribile a Gabi</h3><p>Un mensaje por WhatsApp es suficiente para empezar. Gabi te explica todo sin apurarte y responde cada duda.</p></div>
+    <div class="paso-card reveal d2"><div class="paso-num">2</div><h3>Completá tu registro</h3><p>Nombre, DNI, número de celular y dirección. Natura activa tu cuenta de Consultora de Belleza en minutos.</p></div>
+    <div class="paso-card reveal d3"><div class="paso-num">3</div><h3>Comenzá a vender</h3><p>Accedé a la App Mi Negocio, realizá tu primer pedido y recibís tus productos y materiales de apoyo para iniciar.</p></div>
+  </div>
+  <div style="text-align:center;" class="reveal">
+    <a class="btn-wa btn-wa-lg" href="https://wa.me/543364674254?text=Hola%20Gabi%2C%20quiero%20ser%20consultora%2C%20cont%C3%A1ctame%20por%20favor%20%F0%9F%8C%B1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Comenzá ya
+    </a>
+  </div>
+</section>
+
+<!-- OBJECIONES -->
+<section class="obj-sec">
+  <div class="obj-inner">
+    <span class="etiqueta reveal">Sin vueltas</span>
+    <h2 class="reveal">Tus dudas tienen respuesta concreta.</h2>
+    <p class="reveal">Todas las preguntas que rondan tu cabeza, Gabi ya las escuchó antes.</p>
+    <div class="obj-list">
+      <div class="obj-item reveal d1"><span class="obj-m-lbl">Miedo</span><span class="obj-m-txt">"No tengo plata para invertir"</span><span class="obj-sep">→</span><span class="obj-r-txt"><strong>No hay inversión inicial obligatoria.</strong> El kit de inicio se financia con tus primeras ventas.</span></div>
+      <div class="obj-item reveal d2"><span class="obj-m-lbl">Miedo</span><span class="obj-m-txt">"No sé nada de ventas ni de tecnología"</span><span class="obj-sep">→</span><span class="obj-r-txt"><strong>Gabi te enseña todo desde cero,</strong> a tu ritmo. No necesitás saber nada previo.</span></div>
+      <div class="obj-item reveal d3"><span class="obj-m-lbl">Miedo</span><span class="obj-m-txt">"No tengo tiempo, tengo hijos y trabajo"</span><span class="obj-sep">→</span><span class="obj-r-txt"><strong>Vos decidís cuándo y cuánto.</strong> Muchas consultoras empiezan con una hora por día.</span></div>
+      <div class="obj-item reveal d4"><span class="obj-m-lbl">Miedo</span><span class="obj-m-txt">"¿Y si no me va bien?"</span><span class="obj-sep">→</span><span class="obj-r-txt"><strong>Por eso está Gabi.</strong> No es un registro anónimo: tenés mentoría real en cada etapa.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header reveal"><h2>¿Tenés alguna duda o pregunta?</h2><p>Respuestas claras, sin letra chica ni rodeos.</p></div>
+    <div class="faq-list">
+      <div class="faq-item reveal"><button class="faq-q">¿Cómo puedo ser Consultora de Belleza Natura?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-ai">Escribile a <strong>Gabi por WhatsApp</strong> y ella te guía en cada paso. El proceso es 100% online: completás tu registro con nombre, DNI, celular y dirección, y Natura activa tu cuenta en minutos. No necesitás experiencia ni inversión obligatoria.</div></div></div>
+      <div class="faq-item reveal d1"><button class="faq-q">¿Tiene algún costo realizar mi registro?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-ai"><strong>El registro es completamente gratis.</strong> Natura te otorga crédito para hacer tus primeros pedidos. El Kit de Inicio, si elegís tomarlo, se puede financiar con tus primeras ganancias. Podés empezar sin poner dinero propio.</div></div></div>
+      <div class="faq-item reveal d2"><button class="faq-q">¿Cuál será mi porcentaje de ganancia?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-ai">Empezás en el nivel <strong>Bronce con 25%</strong> de ganancia sobre el precio de catálogo. A medida que vendés más y avanzás en el Camino de Crecimiento, llegás hasta el <strong>37% en nivel Zafiro</strong>. Gabi te explica cómo maximizar tus ganancias desde el primer ciclo.</div></div></div>
+      <div class="faq-item reveal d3"><button class="faq-q">¿Cuánto tiempo tengo para pagar mis pedidos?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-ai">Tenés <strong>hasta 21 días para abonar tu factura</strong> desde que hacés el pedido. Eso te da tiempo para cobrarle a tus clientas primero. A medida que pagás puntualmente, tu crédito disponible aumenta.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q">¿Cuáles son las maneras en que puedo vender?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-ai">Podés vender <strong>directamente a tus conocidos</strong> (familia, trabajo, vecinas) y también <strong>por redes sociales o tu tienda online</strong>. Cada venta que generés online te trae comisión directamente. Gabi te enseña a combinar ambas formas para potenciar tus ingresos.</div></div></div>
+      <div class="faq-item reveal d1"><button class="faq-q">¿Qué pasa si en algún ciclo no vendo nada?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-ai"><strong>No hay penalidades.</strong> Natura tiene niveles que benefician con mejores comisiones, pero nadie te sanciona si un ciclo vendés menos. Lo importante es la constancia. Y para eso está Gabi: para ayudarte a encontrar estrategias que funcionen para tu vida real.</div></div></div>
+      <div class="faq-item reveal d2"><button class="faq-q">¿Cuál es el puntaje mínimo para realizar mi pedido?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-ai">Natura tiene un <strong>puntaje mínimo por ciclo</strong> para mantener la actividad de consultora. Gabi te explica exactamente cuánto es y cómo alcanzarlo fácilmente en tus primeras semanas, para que no quedes sin crédito ni actividad.</div></div></div>
+      <div class="faq-item reveal d3"><button class="faq-q">¿Cómo es el acompañamiento de Gabi?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button><div class="faq-a"><div class="faq-ai"><strong>Gabriela González Campos</strong> tiene 30 años de experiencia y formación MBA. Su acompañamiento incluye sesiones de mentoría grupal, grupo de WhatsApp del equipo, talleres prácticos y atención personalizada cuando necesitás resolver algo. No sos un número en una base de datos: <strong>sos parte de su equipo.</strong></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-sec">
+  <div class="cta-inner">
+    <span class="cta-tag">Tu momento es ahora</span>
+    <h2>Un mensaje puede<br>cambiarlo <em>todo.</em></h2>
+    <p>Escribile a Gabi hoy. Sin compromiso, sin presiones. Solo una conversación donde te contamos todo y respondemos cada duda sin apurarte.</p>
+    <a class="btn-wa btn-wa-lg" href="https://wa.me/543364674254?text=Hola%20Gabi%2C%20quiero%20ser%20consultora%2C%20cont%C3%A1ctame%20por%20favor%20%F0%9F%8C%B1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Escribile a Gabi ahora
+    </a>
+    <span class="cta-micro">Respondemos siempre · Sin presiones · Solo una charla sin compromiso</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><strong>Gabriela González Campos</strong><br>Gerente de Negocios Natura · Sector 460 Jade<br>San Nicolás · San Pedro · Baradero · Ramallo · Arrecifes · Pérez Millán</div>
+    <div class="footer-copy">© 2026 Natura Cosméticos S.A.</div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE -->
+<div class="sticky">
+  <a href="https://wa.me/543364674254?text=Hola%20Gabi%2C%20quiero%20ser%20consultora%2C%20cont%C3%A1ctame%20por%20favor%20%F0%9F%8C%B1" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Quiero ser consultora
+  </a>
+</div>
+
+<script>
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target);}});},{threshold:.1});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+document.querySelectorAll(".faq-q").forEach(btn=>{btn.addEventListener("click",()=>{const it=btn.closest(".faq-item"),op=it.classList.contains("open");document.querySelectorAll(".faq-item").forEach(i=>i.classList.remove("open"));if(!op)it.classList.add("open");});});
+</script>
+</body>
+</html>
